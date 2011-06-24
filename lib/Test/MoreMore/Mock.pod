@@ -1,0 +1,34 @@
+=head1 NAME
+
+Test::MoreMore::Mock - Mock object for tests
+
+=head1 SYNOPSIS
+
+  use Test::MoreMore::Mock;
+  
+  my $obj = Test::MoreMore::Mock->new(
+      method1 => 'abc',
+      method2 => 'xyz',
+      param => {
+          a => 1,
+          b => 2,
+      },
+  );
+  is $obj->method1, 'abc';
+  is $obj->param('a'), 1;
+  
+  $obj->param(a => 3);
+  is $obj->param('a'), 3;
+
+=head1 AUTHOR
+
+Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>
+
+=head1 LICENSE
+
+Copyright 2010 Hatena <http://www.hatena.ne.jp/>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

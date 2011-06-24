@@ -1,0 +1,26 @@
+{
+    main_module_name => 'Test::MoreMore',
+    file_names => [qw(
+        lib/Test/MoreMore.pm
+        lib/Test/MoreMore.pod
+        lib/Test/MoreMore/Mock.pm
+        lib/Test/MoreMore/Mock.pod
+        t/test/moremore.t
+        t/test/moremore-mock.t
+        config/test-moremore.pi
+    )],
+    req_modules => {
+        'Test::More' => 0,
+        'Test::Differences' => 0,
+        'Exporter::Lite' => 0,
+        'Class::Accessor::Fast' => 0,
+        'Class::Data::Inheritable' => 0,
+    },
+    t_req_modules => {
+        'Encode' => 0,
+        'DateTime' => 0,
+        'List::Rubyish' => 0,
+        'Test::Test::More' => 0,
+    },
+};
+

@@ -1,0 +1,105 @@
+=head1 NAME
+
+Test::MoreMore - Basic Test Assertions
+
+=head1 SYNOPSIS
+
+  use Test::MoreMore;
+  
+  ok 1;
+  ng 0;
+  is_bool 1, '0 but true';
+  isa_list_ok $list;
+  eq_or_diff $obj1, $obj2;
+  dies_ok { die "Hi!" };
+  ...
+
+=head1 DESCRIPTION
+
+The C<Test::MoreMore> module provides a number of basic but useful
+test assertion subroutines.  It is a superset of L<Test::More>.
+
+=head1 FUNCTIONS
+
+C<Test::MoreMore> provides all functions provided by L<Test::More>.
+In addition, it provides following functions:
+
+=over 4
+
+=item ng $actual, [$test_name]
+
+Same as C<ok !$actual, $test_name>.
+
+=item is_bool $actual, $expected, [$test_name]
+
+Same as C<is !!$actual, !!$expected, $test_name>.
+
+=item is_datetime $actual, $expected, [$test_name]
+
+Same as C<is $actual->epoch, $expected->epoch, $test_name>.
+
+=item isa_list_ok $actual, [$test_name]
+
+The test passes iff C<$actual> is an instance of L<List::Rubyish> or
+L<DBIx::MoCo::List>.
+
+=item isa_list_n_ok $actual, $n, [$test_name]
+
+Same as C<is_list_ok $actual, $test_name; is $actual->length, $n,
+$test_name> (but as a test).
+
+=item sort_ok { CODE of $_[0], $_[1] } $actual, $expected, [$test_name]
+
+Sorts the items of the actual and expected lists (an instance of
+L<List::Rubyish> or L<DBIx::MoCo::List>) and then compares them by
+C<eq_or_diff>.
+
+=item now_ok $actual, [$test_name]
+
+The test passes iff $actual is an instance of L<DateTime> that
+represents a date-time nearly equal to I<now>.
+
+=item eq_or_diff $actual, $expected, [$test_name]
+
+It compares two arbitrary data.  This is a clever variant of
+C<eq_or_diff> provided by L<Test::Differences>; it does not
+distinguish C<'0'> (string) and C<0> (number).
+
+=item dies_ok { CODE } [$test_name]
+
+It fails unless the I<CODE> dies.
+
+=item lives_ok { CODE } [$test_name]
+
+It fails if the I<CODE> dies.
+
+=back
+
+=head1 HISTORY
+
+=over 4
+
+=item 1.0 (2010-10-14)
+
+Initial packaged version.
+
+=item 1.1 (2011-06-24)
+
+Removed dependency on L<Test::Exception> and added simpler
+implementation of C<dies_ok> and C<lives_ok> by itself.
+
+=back
+
+=head1 AUTHORS
+
+Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>, Mechairoi
+(id:mechairoi).
+
+=head1 LICENSE
+
+Copyright 2010-2011 Hatena <http://www.hatena.ne.jp/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
