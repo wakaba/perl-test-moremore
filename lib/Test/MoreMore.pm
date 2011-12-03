@@ -147,6 +147,7 @@ sub eq_or_diff {
 
 sub lives_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
+    local $Carp::CarpLevel = $Carp::CarpLevel + 1;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
@@ -164,6 +165,7 @@ sub lives_ok (&;$) {
 
 sub dies_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
+    local $Carp::CarpLevel = $Carp::CarpLevel + 1;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
