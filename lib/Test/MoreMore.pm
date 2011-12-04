@@ -6,6 +6,8 @@ use Test::More;
 require Test::Differences;
 use Exporter::Lite;
 
+$Carp::CarpInternal{+__PACKAGE__} = 1;
+
 our @EXPORT = (
     @Test::More::EXPORT,
     qw(
@@ -147,7 +149,6 @@ sub eq_or_diff {
 
 sub lives_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    local $Carp::CarpLevel = $Carp::CarpLevel + 2;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
@@ -165,7 +166,6 @@ sub lives_ok (&;$) {
 
 sub dies_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    local $Carp::CarpLevel = $Carp::CarpLevel + 2;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
