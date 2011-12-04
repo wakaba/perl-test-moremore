@@ -147,7 +147,7 @@ sub eq_or_diff {
 
 sub lives_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    local $Carp::CarpLevel = $Carp::CarpLevel + 1;
+    local $Carp::CarpLevel = $Carp::CarpLevel + 2;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
@@ -165,7 +165,7 @@ sub lives_ok (&;$) {
 
 sub dies_ok (&;$) {
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    local $Carp::CarpLevel = $Carp::CarpLevel + 1;
+    local $Carp::CarpLevel = $Carp::CarpLevel + 2;
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
@@ -173,7 +173,7 @@ sub dies_ok (&;$) {
         ng 1, $name;
         1;
     } or do {
-        ok 1, $name;
+        ok 1, $name || do { my $v = $@; $v =~ s/\n$//; $v };
     };
 }
 
