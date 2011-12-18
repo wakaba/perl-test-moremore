@@ -69,6 +69,13 @@ distinguish C<'0'> (string) and C<0> (number).
 
 It fails unless the I<CODE> dies.
 
+=item dies_here_ok { CODE } [$test_name]
+
+Same as C<dies_ok>, but C<dies_here_ok> checks whether the error
+location (" at ... line ..." at the end of C<$@>) is near the line of
+the code block.  This could be used to test whether the C<Carp> module
+returns a useful information.
+
 =item lives_ok { CODE } [$test_name]
 
 It fails if the I<CODE> dies.
@@ -88,6 +95,10 @@ Initial packaged version.
 Removed dependency on L<Test::Exception> and added simpler
 implementation of C<dies_ok> and C<lives_ok> by itself.
 
+=item 1.2
+
+Added C<dies_here_ok>.
+
 =back
 
 =head1 AUTHORS
@@ -98,6 +109,8 @@ Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>, Mechairoi
 =head1 LICENSE
 
 Copyright 2010-2011 Hatena <http://www.hatena.ne.jp/>.
+
+Copyright 2011 Wakaba <w@suika.fam.cx>.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

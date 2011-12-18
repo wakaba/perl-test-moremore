@@ -1,7 +1,7 @@
 package Test::MoreMore;
 use strict;
 use warnings;
-our $VERSION = '1.1';
+our $VERSION = '1.2';
 use Test::More;
 require Test::Differences;
 use Exporter::Lite;
@@ -21,6 +21,7 @@ our @EXPORT = (
         eq_or_diff
         lives_ok
         dies_ok
+        dies_here_ok
     ),
 );
 
@@ -169,11 +170,31 @@ sub dies_ok (&;$) {
     my ($code, $name) = @_;
     local $@ = undef;
     eval {
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
         $code->();
         ng 1, $name;
         1;
     } or do {
         ok 1, $name || do { my $v = $@; $v =~ s/\n$//; $v };
+    };
+}
+
+sub dies_here_ok (&;$) {
+    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    my ($code, $name) = @_;
+    local $@ = undef;
+    eval {
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        $code->();
+        ng 1, $name;
+        1;
+    } or do {
+        my $caller_file = [caller(0)]->[1];
+        my $caller_line = [caller(0)]->[2];
+        my $pattern = ' at ' . (quotemeta $caller_file) . ' line ('
+            . (join '|', ($caller_line - 10) .. $caller_line)
+            . ')$';
+        like $@, qr{$pattern}, $name || do { my $v = $@; $v =~ s/\n$//; $v };
     };
 }
 
