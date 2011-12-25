@@ -57,12 +57,20 @@ sub is_datetime ($$;$) {
         return;
     }
     unless (UNIVERSAL::isa($dt2, 'DateTime')) {
+        if (UNIVERSAL::isa($dt1, 'DateTime')) {
+            $dt1 = $dt1->clone;
+            $dt1->set_time_zone('UTC');
+        }
         is $dt1 . '', $dt2, $name;
         return;
     }
     if ($dt1->epoch == $dt2->epoch) {
         is $dt1->epoch, $dt2->epoch, $name;
     } else {
+        $dt1 = $dt1->clone;
+        $dt1->set_time_zone('UTC');
+        $dt2 = $dt2->clone;
+        $dt2->set_time_zone('UTC');
         is $dt1 . '', $dt2 . '', $name;
     }
 }
