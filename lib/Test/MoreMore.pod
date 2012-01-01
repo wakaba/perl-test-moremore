@@ -40,8 +40,10 @@ Same as C<is $actual->epoch, $expected->epoch, $test_name>.
 
 =item isa_list_ok $actual, [$test_name]
 
-The test passes iff C<$actual> is an instance of L<List::Rubyish> or
-L<DBIx::MoCo::List>.
+The test passes iff C<$actual> is an instance of a list class.  The
+list of list classes includes L<List::Rubyish> and
+L<DBIx::MoCo::List>.  You can add more list classes by modifying the
+hash C<$Test::MoreMore::ListClass>.
 
 =item isa_list_n_ok $actual, $n, [$test_name]
 
@@ -97,7 +99,8 @@ implementation of C<dies_ok> and C<lives_ok> by itself.
 
 =item 1.2
 
-Added C<dies_here_ok>.
+Added C<dies_here_ok>.  Made it possible to add more list classes from
+other module.
 
 =back
 
@@ -110,7 +113,7 @@ Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>, Mechairoi
 
 Copyright 2010-2011 Hatena <http://www.hatena.ne.jp/>.
 
-Copyright 2011 Wakaba <w@suika.fam.cx>.
+Copyright 2011-2012 Wakaba <w@suika.fam.cx>.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

@@ -75,15 +75,21 @@ sub is_datetime ($$;$) {
     }
 }
 
+our %ListClass;
+$ListClass{'List::Rubyish'} = 1;
+$ListClass{'DBIx::MoCo::List'} = 1;
+
 sub isa_list_ok ($;$) {
     my ($obj, $name) = @_;
-
-    if (UNIVERSAL::isa($obj, 'DBIx::MoCo::List')) {
-        ok 1, $name;
-        return 1;
-    }
-
     local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+    for my $class (keys %ListClass) {
+        if (UNIVERSAL::isa($obj, $class)) {
+            ok 1, $name;
+            return 1;
+        }  
+    }
+    
     isa_ok $obj, 'List::Rubyish', $name;
 }
 
@@ -91,12 +97,12 @@ sub isa_list_n_ok ($$;$) {
     my ($obj, $n, $name) = @_;
 
     local $Test::Builder::Level = $Test::Builder::Level + 1;
-    if (UNIVERSAL::isa($obj, 'DBIx::MoCo::List')) {
-        is $obj->length, $n, $name;
-        return 1;
-    } elsif (UNIVERSAL::isa($obj, 'List::Rubyish')) {
-        is $obj->length, $n, $name;
-        return 1;
+
+    for my $class (keys %ListClass) {
+        if (UNIVERSAL::isa($obj, $class)) {
+            is $obj->length, $n, $name;
+            return 1;
+        }
     }
 
     isa_ok $obj, 'List::Rubyish', $name;
