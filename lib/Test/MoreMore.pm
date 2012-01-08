@@ -207,7 +207,7 @@ sub dies_here_ok (&;$) {
         my $caller_line = [caller(0)]->[2];
         my $pattern = ' at ' . (quotemeta $caller_file) . ' line ('
             . (join '|', ($caller_line - 10) .. $caller_line)
-            . ')$';
+            . ')\.?$';
         like $@, qr{$pattern}, $name || do { my $v = $@; $v =~ s/\n$//; $v };
     };
 }
