@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use Path::Class;
 use lib file(__FILE__)->dir->parent->parent->subdir('lib')->stringify;
+use lib file(__FILE__)->dir->parent->parent->subdir('modules', 'perl-test-test', 'lib')->stringify;
 use base qw(Test::Class);
 use Test::MoreMore;
 use Test::Test::More;
