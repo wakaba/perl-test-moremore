@@ -88,8 +88,13 @@ It fails if the I<CODE> dies.
 
 Latest version of the module is available at GitHub reposiotry.
 
-- GitHub: <https://github.com/wakaba/perl-test-moremore>.
-- Travis CI: <http://travis-ci.org/wakaba/perl-test-moremore/>.
+=over 4
+
+=item GitHub: <https://github.com/wakaba/perl-test-moremore>.
+
+=item Travis CI: <http://travis-ci.org/wakaba/perl-test-moremore/>.
+
+=back
 
 =head1 HISTORY
 
