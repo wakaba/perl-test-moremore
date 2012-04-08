@@ -3,6 +3,7 @@ use strict;
 use warnings;
 our $VERSION = '1.2';
 use Test::More;
+use Test::Builder;
 require Test::Differences;
 use Exporter::Lite;
 
@@ -34,6 +35,11 @@ for my $function (qw(note diag explain)) {
         push @EXPORT, $function;
     }
 }
+
+my $builder = Test::More->builder;
+binmode $builder->output,         ":utf8";
+binmode $builder->failure_output, ":utf8";
+binmode $builder->todo_output,    ":utf8";
 
 sub eq_or_diff;
 
