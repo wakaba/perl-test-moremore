@@ -90,9 +90,13 @@ Latest version of the module is available at GitHub reposiotry.
 
 =over 4
 
-=item GitHub: <https://github.com/wakaba/perl-test-moremore>.
+=item GitHub
 
-=item Travis CI: <http://travis-ci.org/wakaba/perl-test-moremore/>.
+<https://github.com/wakaba/perl-test-moremore>.
+
+=item Travis CI
+
+<http://travis-ci.org/wakaba/perl-test-moremore/>.
 
 =back
 
