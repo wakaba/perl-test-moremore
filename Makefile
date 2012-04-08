@@ -28,7 +28,7 @@ test: safetest
 
 test-deps: carton-install config/perl/libs.txt
 
-safetest: safetest-main
+safetest: test-deps safetest-main
 
 safetest-main: 
 	$(PERL_ENV) $(PROVE) t/test/*.t
