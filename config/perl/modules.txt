@@ -4,6 +4,8 @@ Exporter::Lite
 Class::Accessor::Fast
 Class::Data::Inheritable
 
+Carp
 Encode
 DateTime
 List::Rubyish
+Test::Class

@@ -17,9 +17,11 @@
         'Class::Data::Inheritable' => 0,
     },
     t_req_modules => {
+        'Carp' => 0,
         'Encode' => 0,
         'DateTime' => 0,
         'List::Rubyish' => 0,
+        'Test::Class' => 0,
         'Test::Test::More' => 0,
     },
 };
