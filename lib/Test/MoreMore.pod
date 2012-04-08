@@ -84,6 +84,13 @@ It fails if the I<CODE> dies.
 
 =back
 
+=head1 DEVELOPMENT
+
+Latest version of the module is available at GitHub reposiotry.
+
+- GitHub: <https://github.com/wakaba/perl-test-moremore>.
+- Travis CI: <http://travis-ci.org/wakaba/perl-test-moremore/>.
+
 =head1 HISTORY
 
 =over 4
