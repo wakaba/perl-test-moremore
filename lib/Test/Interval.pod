@@ -1,0 +1,51 @@
+=head1 NAME
+
+Test::Interval - Test the realtimeness of code
+
+=head1 SYNOPSIS
+
+  use Test::Interval;
+  
+  ms_ok {
+    sleep 1;
+  } 2000, 'Sleep about 1 second';
+
+=head1 DESCRIPTION
+
+The C<Test::Interval> module exports a test subroutine C<ms_ok>, which
+can be used to test the execution time of the specified block is less
+than or equal to the specified milliseconds.
+
+=head1 USAGE
+
+=over 4
+
+=item ms_ok { CODE } MILLISECONDS, [NAME];
+
+The test passes iff the execution of the I<CODE> ends within
+I<MILLISECONDS> milliseconds (inclusive).
+
+=back
+
+=head1 HISTORY
+
+=over 4
+
+=item 1.0 (2010-10-26)
+
+Packaged.
+
+=back
+
+=head1 AUTHOR
+
+Wakaba (id:wakabatan) <wakabatan@hatena.ne.jp>.
+
+=head1 LICENSE
+
+Copyright 2010 Hatena <http://www.hatena.ne.jp/>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

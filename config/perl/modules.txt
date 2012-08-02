@@ -5,3 +5,4 @@ Exporter::Lite
 Test::Builder
 Test::More
 Test::Differences
+Time::HiRes

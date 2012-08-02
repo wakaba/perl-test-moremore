@@ -41,11 +41,12 @@ GENERATEPM_ = $(GENERATEPM) --generate-json
 dist: generatepm
 	mkdir -p dist
 	$(GENERATEPM_) config/dist/test-moremore.pi dist
+	$(GENERATEPM_) config/dist/test-interval.pi dist
 
 dist-wakaba-packages: local/wakaba-packages dist
 	cp dist/*.json local/wakaba-packages/data/perl/
 	cp dist/*.tar.gz local/wakaba-packages/perl/
-	cd local/wakaba-packages && $(MAKE) all
+	cd local/wakaba-packages && PERL5LIB="$(abspath local/generatepm/local/perl-latest/pm/lib/perl5)" $(MAKE) all
 
 local/wakaba-packages: always
 	git clone "git@github.com:wakaba/packages.git" $@ || (cd $@ && git pull)
