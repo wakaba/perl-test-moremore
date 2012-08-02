@@ -3,7 +3,7 @@ PERL_VERSION = latest
 PERL_PATH = $(abspath local/perlbrew/perls/perl-$(PERL_VERSION)/bin)
 PROVE = prove
 
-all: config/perl/libs.txt
+all:
 
 ## ------ Deps ------
 
@@ -14,19 +14,19 @@ Makefile-setupenv: Makefile.setupenv
 Makefile.setupenv:
 	wget -O $@ https://raw.github.com/wakaba/perl-setupenv/master/Makefile.setupenv
 
-config/perl/libs.txt local-perl generatepm \
-perl-exec perl-version carton-install carton-update \
+local-perl generatepm \
+perl-exec perl-version pmb-update pmb-install lperl lprove \
 : %: Makefile-setupenv
-	make --makefile Makefile.setupenv pmbundler-repo-update $@ \
-            PMBUNDLER_REPO_URL=$(PMBUNDLER_REPO_URL)
+	make --makefile Makefile.setupenv $@
 
 ## ------ Tests ------
 
-PERL_ENV = PATH=$(PERL_PATH):$(PATH) PERL5LIB=$(shell cat config/perl/libs.txt)
+PERL_ENV = PATH="local/perl-$(PERL_VERSION)/pm/bin:$(PERL_PATH):$(PATH)" \
+	   PERL5LIB="$(shell cat config/perl/libs.txt)"
 
 test: safetest
 
-test-deps: carton-install config/perl/libs.txt
+test-deps: pmb-install
 
 safetest: test-deps safetest-main
 
